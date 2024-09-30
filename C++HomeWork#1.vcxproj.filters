@@ -13,8 +13,8 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="소스 파일\NewFilter1">
-      <UniqueIdentifier>{52b83dbe-6dfd-47c8-8e2c-703a3685c0fb}</UniqueIdentifier>
+    <Filter Include="소스 파일\폴더추가">
+      <UniqueIdentifier>{1a85fe12-cb3a-4cde-a793-9542e90a9c4a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -28,6 +28,9 @@
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="소스.cpp">
+      <Filter>소스 파일\폴더추가</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
