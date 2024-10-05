@@ -10,7 +10,7 @@ public:
     int score[3];
     string name;
 
-    Player() { // 持失切
+    Player() { // 持失切.
         for (int i = 0; i < 3; i++) {
             score[i] = 0;
         }
