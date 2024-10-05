@@ -32,10 +32,11 @@ public:
     }
 
     void play() {
-        for (int i = 0; i < 2; i++) {
-            cout << "선수 " << (i + 1) << " 이름>> ";
-            cin >> players[i].name;
-        }
+     
+        cout << "첫번째 선수 이름>>";
+        cin >> players[0].name;
+        cout << "두번째 선수 이름>>";
+        cin >> players[1].name;
 
         cin.ignore(); // 버퍼에 남아 있는 개행 문자 제거
 
