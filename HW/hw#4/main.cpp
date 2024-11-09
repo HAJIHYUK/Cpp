@@ -100,7 +100,6 @@ int main() {
             
             
         }
-        }
         else if (choice == 2) {
             laser->print(pages);
             inkjet->printInkJet();
