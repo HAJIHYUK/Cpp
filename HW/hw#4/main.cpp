@@ -121,6 +121,7 @@ int main() {
     }
 
     delete inkjet;
+
     delete laser;
 
     return 0;
