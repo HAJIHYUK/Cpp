@@ -12,7 +12,7 @@ protected:
 
 public:
     Printer(string model, string manufacturer, int availableCount)
-        : model(model), manufacturer(manufacturer), printedCount(0), availableCount(availableCount) {}
+: model(model), manufacturer(manufacturer), printedCount(0), availableCount(availableCount) {}
 
     void print(int pages) {
         if (pages <= availableCount) {
@@ -40,7 +40,7 @@ public:
             printedCount += pages;
             availableCount -= pages;
             availableInk -= pages;
-            printInkJet();
+            cout << "프린트하였습니다." << endl;
         }
         else {
             cout << "용지 또는 잉크가 부족하여 프린트할 수 없습니다." << endl;
@@ -66,7 +66,8 @@ public:
             printedCount += pages;
             availableCount -= pages;
             availableToner -= pages;
-            printLaser();
+            cout << "프린트하였습니다." << endl;
+         
         }
         else {
             cout << "용지 또는 토너가 부족하여 프린트할 수 없습니다." << endl;
@@ -94,9 +95,17 @@ int main() {
 
         if (choice == 1) {
             inkjet->print(pages);
+            inkjet->printInkJet();
+            laser->printLaser();
+            
+            
+        }
         }
         else if (choice == 2) {
             laser->print(pages);
+            inkjet->printInkJet();
+            laser->printLaser();
+            cout << endl;
         }
         else {
             cout << "잘못된 입력입니다. 다시 시도해주세요." << endl;
@@ -109,6 +118,7 @@ int main() {
         if (cont == 'n' || cont == 'N') {
             break;
         }
+        cout << endl;
     }
 
     delete inkjet;
