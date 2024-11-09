@@ -11,7 +11,8 @@ protected:
     int availableCount;
 
 public:
-    Printer(string model, string manufacturer, int availableCount) : model(model), manufacturer(manufacturer), printedCount(0), availableCount(availableCount) {}
+    Printer(string model, string manufacturer, int availableCount)
+        : model(model), manufacturer(manufacturer), printedCount(0), availableCount(availableCount) {}
 
     void print(int pages) {
         if (pages <= availableCount) {
@@ -23,8 +24,6 @@ public:
             cout << "용지가 부족하여 프린트할 수 없습니다." << endl;
         }
     }
-
-   
 };
 
 // 잉크젯 프린터 클래스
@@ -33,21 +32,22 @@ private:
     int availableInk;
 
 public:
-    InkjetPrinter(string model, string manufacturer, int availableCount, int availableInk) : Printer(model, manufacturer, availableCount), availableInk(availableInk) {}
+    InkjetPrinter(string model, string manufacturer, int availableCount, int availableInk)
+        : Printer(model, manufacturer, availableCount), availableInk(availableInk) {}
 
     void print(int pages) {
         if (pages <= availableCount && pages <= availableInk) {
             printedCount += pages;
             availableCount -= pages;
             availableInk -= pages;
-            cout << model << " " << manufacturer << ", 남은 종이 " << availableCount << "장, 남은 잉크 " << availableInk << endl;
+            printInkJet();
         }
         else {
             cout << "용지 또는 잉크가 부족하여 프린트할 수 없습니다." << endl;
         }
     }
 
-    void show() {
+    void printInkJet() {
         cout << model << " " << manufacturer << ", 남은 종이 " << availableCount << "장, 남은 잉크 " << availableInk << endl;
     }
 };
@@ -58,32 +58,33 @@ private:
     int availableToner;
 
 public:
-    LaserPrinter(string model, string manufacturer, int availableCount, int availableToner) : Printer(model, manufacturer, availableCount), availableToner(availableToner) {}
+    LaserPrinter(string model, string manufacturer, int availableCount, int availableToner)
+        : Printer(model, manufacturer, availableCount), availableToner(availableToner) {}
 
     void print(int pages) {
         if (pages <= availableCount && pages <= availableToner) {
             printedCount += pages;
             availableCount -= pages;
             availableToner -= pages;
-            cout << model << " " << manufacturer << ", 남은 종이 " << availableCount << "장, 남은 토너 " << availableToner << endl;
+            printLaser();
         }
         else {
             cout << "용지 또는 토너가 부족하여 프린트할 수 없습니다." << endl;
         }
     }
 
-    void show() {
+    void printLaser() {
         cout << model << " " << manufacturer << ", 남은 종이 " << availableCount << "장, 남은 토너 " << availableToner << endl;
     }
 };
 
 int main() {
-    InkjetPrinter inkjet("Officejet V40", "HP", 5, 10);
-    LaserPrinter laser("SCX-6x45", "삼성전자", 3, 20);
+    InkjetPrinter* inkjet = new InkjetPrinter("Officejet V40", "HP", 5, 10);
+    LaserPrinter* laser = new LaserPrinter("SCX-6x45", "삼성전자", 3, 20);
 
     cout << "현재 작동중인 2 대의 프린터는 아래와 같다" << endl;
-    inkjet.show();
-    laser.show();
+    inkjet->printInkJet();
+    laser->printLaser();
     cout << "\n";
 
     int choice, pages;
@@ -92,10 +93,10 @@ int main() {
         cin >> choice >> pages;
 
         if (choice == 1) {
-            inkjet.print(pages);
+            inkjet->print(pages);
         }
         else if (choice == 2) {
-            laser.print(pages);
+            laser->print(pages);
         }
         else {
             cout << "잘못된 입력입니다. 다시 시도해주세요." << endl;
@@ -105,8 +106,13 @@ int main() {
         char cont;
         cout << "계속 프린트 하시겠습니까(y/n)>> ";
         cin >> cont;
-        if (cont == 'n' || cont == 'N') break;
+        if (cont == 'n' || cont == 'N') {
+            break;
+        }
     }
+
+    delete inkjet;
+    delete laser;
 
     return 0;
 }
